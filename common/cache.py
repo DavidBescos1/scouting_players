@@ -43,18 +43,6 @@ def get_data():
                 # Reemplazar valores numéricos o vacíos con cadena vacía
                 df[col] = df[col].replace(['0', '0.0', 'nan', 'None'], '')
         
-        # SOLUCIÓN: Corregir las posiciones que aparecen incorrectamente en Render
-        posiciones_mapping = {
-            'Frente común': 'FW',
-            'G.K.': 'GK',
-            'M.F.': 'MF'
-        }
-        
-        # Aplicar correcciones a cualquier columna que pueda contener posiciones
-        for col in ['Posición', 'Posicion']:
-            if col in df.columns:
-                df[col] = df[col].replace(posiciones_mapping)
-        
         return df
     except Exception as e:
         st.error(f"Error al cargar datos desde Parquet: {e}")
@@ -157,17 +145,6 @@ def prepare_player_data(df):
             df[col] = df[col].astype(str)
             # Reemplazar valores numéricos o vacíos con cadena vacía
             df[col] = df[col].replace(['0', '0.0', 'nan', 'None'], '')
-    
-    # SOLUCIÓN: Corregir las posiciones que aparecen incorrectamente en prepare_player_data
-    posiciones_mapping = {
-        'Frente común': 'FW',
-        'G.K.': 'GK',
-        'M.F.': 'MF'
-    }
-    
-    # Aplicar correcciones a la columna de posición
-    if 'posicion' in df.columns:
-        df['posicion'] = df['posicion'].replace(posiciones_mapping)
     
     # Reemplazar valores nulos por 0 en columnas numéricas
     numeric_cols = df.select_dtypes(include=['float64', 'int64']).columns
