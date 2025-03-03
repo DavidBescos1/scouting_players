@@ -1,2 +1,4 @@
 # scouting_players
-"Aplicación web para análisis de jugadores y generación automática de reportes"
+
+"Aplicación web para análisis y generación automática de reportes de fútbol"
+
