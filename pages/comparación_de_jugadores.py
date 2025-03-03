@@ -14,6 +14,13 @@ def show_player_comparison(df, metrics):
     # Título de la página
     st.title("COMPARACIÓN DE JUGADORES")
     
+    # CORRECCIÓN: Mapa para arreglar las posiciones antes de mostrarlas
+    posiciones_mapping = {
+        'Frente común': 'FW',
+        'G.K.': 'GK',
+        'M.F.': 'MF'
+    }
+    
     # Crear 4 columnas para los jugadores
     col1, col2, col3, col4 = st.columns(4)
     
@@ -29,6 +36,8 @@ def show_player_comparison(df, metrics):
             df[posicion_column] = df[posicion_column].astype(str)
             # Reemplazar los valores '0' o '0.0' con valores vacíos
             df[posicion_column] = df[posicion_column].replace(['0', '0.0', 'nan', 'None', 'NaN'], '')
+            # CORRECCIÓN: Aplicamos el mapeo a la columna de posición en el dataframe completo
+            df[posicion_column] = df[posicion_column].replace(posiciones_mapping)
             break
     
     # JUGADOR 1
@@ -60,13 +69,25 @@ def show_player_comparison(df, metrics):
             posiciones1 = ['Seleccione Posición']
             pos_values = filtered_df1[posicion_column].dropna().unique().tolist()
             pos_values = [p for p in pos_values if p and p.strip() and p != '0' and p != '0.0' and p.lower() != 'nan']
+            
+            # CORRECCIÓN: Si no hay posiciones, usar valores predeterminados
+            if not pos_values:
+                pos_values = ['DF', 'FW', 'GK', 'MF']
+                
             if pos_values:
                 posiciones1 += sorted(pos_values)
+                
             selected_posicion1 = st.selectbox("", options=posiciones1, key="posicion_1", label_visibility="collapsed")
             
             # Filtrar por posición seleccionada
             if selected_posicion1 != 'Seleccione Posición':
-                filtered_df1 = filtered_df1[filtered_df1[posicion_column] == selected_posicion1]
+                # Si la posición seleccionada es una de las corregidas, buscar usando ambos valores
+                reverse_mapping = {v: k for k, v in posiciones_mapping.items()}
+                if selected_posicion1 in reverse_mapping:
+                    filtered_df1 = filtered_df1[(filtered_df1[posicion_column] == selected_posicion1) | 
+                                              (filtered_df1[posicion_column] == reverse_mapping[selected_posicion1])]
+                else:
+                    filtered_df1 = filtered_df1[filtered_df1[posicion_column] == selected_posicion1]
         else:
             st.selectbox("", options=['Posición no disponible'], key="posicion_1_na", label_visibility="collapsed")
         
@@ -109,13 +130,25 @@ def show_player_comparison(df, metrics):
             posiciones2 = ['Seleccione Posición']
             pos_values = filtered_df2[posicion_column].dropna().unique().tolist()
             pos_values = [p for p in pos_values if p and p.strip() and p != '0' and p != '0.0' and p.lower() != 'nan']
+            
+            # CORRECCIÓN: Si no hay posiciones, usar valores predeterminados
+            if not pos_values:
+                pos_values = ['DF', 'FW', 'GK', 'MF']
+                
             if pos_values:
                 posiciones2 += sorted(pos_values)
+                
             selected_posicion2 = st.selectbox("", options=posiciones2, key="posicion_2", label_visibility="collapsed")
             
             # Filtrar por posición seleccionada
             if selected_posicion2 != 'Seleccione Posición':
-                filtered_df2 = filtered_df2[filtered_df2[posicion_column] == selected_posicion2]
+                # Si la posición seleccionada es una de las corregidas, buscar usando ambos valores
+                reverse_mapping = {v: k for k, v in posiciones_mapping.items()}
+                if selected_posicion2 in reverse_mapping:
+                    filtered_df2 = filtered_df2[(filtered_df2[posicion_column] == selected_posicion2) | 
+                                              (filtered_df2[posicion_column] == reverse_mapping[selected_posicion2])]
+                else:
+                    filtered_df2 = filtered_df2[filtered_df2[posicion_column] == selected_posicion2]
         else:
             st.selectbox("", options=['Posición no disponible'], key="posicion_2_na", label_visibility="collapsed")
         
@@ -158,13 +191,25 @@ def show_player_comparison(df, metrics):
             posiciones3 = ['Seleccione Posición']
             pos_values = filtered_df3[posicion_column].dropna().unique().tolist()
             pos_values = [p for p in pos_values if p and p.strip() and p != '0' and p != '0.0' and p.lower() != 'nan']
+            
+            # CORRECCIÓN: Si no hay posiciones, usar valores predeterminados
+            if not pos_values:
+                pos_values = ['DF', 'FW', 'GK', 'MF']
+                
             if pos_values:
                 posiciones3 += sorted(pos_values)
+                
             selected_posicion3 = st.selectbox("", options=posiciones3, key="posicion_3", label_visibility="collapsed")
             
             # Filtrar por posición seleccionada
             if selected_posicion3 != 'Seleccione Posición':
-                filtered_df3 = filtered_df3[filtered_df3[posicion_column] == selected_posicion3]
+                # Si la posición seleccionada es una de las corregidas, buscar usando ambos valores
+                reverse_mapping = {v: k for k, v in posiciones_mapping.items()}
+                if selected_posicion3 in reverse_mapping:
+                    filtered_df3 = filtered_df3[(filtered_df3[posicion_column] == selected_posicion3) | 
+                                              (filtered_df3[posicion_column] == reverse_mapping[selected_posicion3])]
+                else:
+                    filtered_df3 = filtered_df3[filtered_df3[posicion_column] == selected_posicion3]
         else:
             st.selectbox("", options=['Posición no disponible'], key="posicion_3_na", label_visibility="collapsed")
         
@@ -207,13 +252,25 @@ def show_player_comparison(df, metrics):
             posiciones4 = ['Seleccione Posición']
             pos_values = filtered_df4[posicion_column].dropna().unique().tolist()
             pos_values = [p for p in pos_values if p and p.strip() and p != '0' and p != '0.0' and p.lower() != 'nan']
+            
+            # CORRECCIÓN: Si no hay posiciones, usar valores predeterminados
+            if not pos_values:
+                pos_values = ['DF', 'FW', 'GK', 'MF']
+                
             if pos_values:
                 posiciones4 += sorted(pos_values)
+                
             selected_posicion4 = st.selectbox("", options=posiciones4, key="posicion_4", label_visibility="collapsed")
             
             # Filtrar por posición seleccionada
             if selected_posicion4 != 'Seleccione Posición':
-                filtered_df4 = filtered_df4[filtered_df4[posicion_column] == selected_posicion4]
+                # Si la posición seleccionada es una de las corregidas, buscar usando ambos valores
+                reverse_mapping = {v: k for k, v in posiciones_mapping.items()}
+                if selected_posicion4 in reverse_mapping:
+                    filtered_df4 = filtered_df4[(filtered_df4[posicion_column] == selected_posicion4) | 
+                                              (filtered_df4[posicion_column] == reverse_mapping[selected_posicion4])]
+                else:
+                    filtered_df4 = filtered_df4[filtered_df4[posicion_column] == selected_posicion4]
         else:
             st.selectbox("", options=['Posición no disponible'], key="posicion_4_na", label_visibility="collapsed")
         
