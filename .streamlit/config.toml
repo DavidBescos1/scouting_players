@@ -6,5 +6,10 @@ textColor = "#FAFAFA"  # Texto claro para contrastar con el fondo oscuro
 font = "sans serif"
 
 [server]
-enableCORS = false
+enableCORS = true  # Cambiar a true para permitir carga de recursos entre dominios
 enableXsrfProtection = true
+headless = true  # Añadido para mejorar la carga en entornos de despliegue
+
+[browser]
+gatherUsageStats = false  # Deshabilitar análisis para mejorar el rendimiento
+serverAddress = "0.0.0.0"  # Asegurar que el servidor escucha en todas las interfaces
