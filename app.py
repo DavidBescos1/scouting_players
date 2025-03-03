@@ -5,13 +5,29 @@ from streamlit_option_menu import option_menu
 from common.cache import get_data, prepare_player_data, get_metrics_list
 import base64
 
-# Configuración de la página
+# Configuración de la página con 'translate=no' para evitar traducción automática
 st.set_page_config(
     page_title="Scouting Players",
     page_icon="⚽",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Añadir metadatos para evitar traducción automática
+st.markdown("""
+<head>
+    <meta name="google" content="notranslate">
+</head>
+<style>
+    [translate="no"] {
+        translate: no;
+    }
+    /* Asegurar que los términos deportivos no se traduzcan */
+    .notranslate {
+        translate: no;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 # Función para autenticación
 def authenticate(username, password):
