@@ -430,3 +430,4 @@ def show_player_comparison(df, metrics):
                         'team': ['Equipo A', 'Equipo B', 'Equipo C']
                     })
                     st.dataframe(backup_data)
+                    

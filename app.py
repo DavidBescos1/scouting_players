@@ -220,3 +220,4 @@ else:
 if st.session_state.authenticated:
     st.markdown("---")
     st.markdown("© 2024 Scouting Players | Desarrollado para el Máster de Python Avanzado")
+    

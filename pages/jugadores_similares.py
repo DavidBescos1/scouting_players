@@ -500,3 +500,4 @@ def show_similar_players(df, metrics):
                             'valor': [85, 78]
                         })
                         st.dataframe(backup_data)
+                        
