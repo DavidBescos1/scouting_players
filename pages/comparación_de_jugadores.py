@@ -431,3 +431,4 @@ def show_player_comparison(df, metrics):
                     })
                     st.dataframe(backup_data)
                     
+                    
