@@ -1,0 +1,13 @@
+streamlit
+pandas
+numpy
+matplotlib
+seaborn
+plotly
+fpdf
+pyarrow
+sqlalchemy
+scikit-learn
+streamlit_option_menu
+openpyxl
+python-dotenv

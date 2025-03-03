@@ -1,0 +1,10 @@
+[theme]
+primaryColor = "#FF4B4B"  # Color rojo para elementos primarios
+backgroundColor = "#0E1117"  # Fondo negro oscuro
+secondaryBackgroundColor = "#262730"  # Color secundario oscuro para widgets
+textColor = "#FAFAFA"  # Texto claro para contrastar con el fondo oscuro
+font = "sans serif"
+
+[server]
+enableCORS = false
+enableXsrfProtection = true
