@@ -4,7 +4,7 @@ numpy
 matplotlib
 seaborn
 plotly
-fpdf
+kaleido
 pyarrow
 sqlalchemy
 scikit-learn
